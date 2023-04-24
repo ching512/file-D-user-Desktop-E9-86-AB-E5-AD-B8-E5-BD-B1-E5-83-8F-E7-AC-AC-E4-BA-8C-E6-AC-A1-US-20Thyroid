@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>US Thyroid</title>
+        <meta charset="UTF-8" />
+        <meta name="dcterms.identifier" content="4689d8e5-1f5e-4dc9-b3e4-9e9094970bbe" />
+        <meta name="dcterms.title" content="US Thyroid" />
+        <meta name="dcterms.description" content="" />
+        <meta name="dcterms.type" content="IMAGE_REPORT_TEMPLATE" />
+        <meta name="dcterms.language" content="en" />
+        <meta name="dcterms.publisher" content="University of Utah" />
+        <meta name="dcterms.rights" content="May be used freely, subject to license agreement" />
+        <meta name="dcterms.license" content="http://www.radreport.org/license.pdf" />
+        <meta name="dcterms.date" content="2018-03-12" />
+        <meta name="dcterms.creator" content="Marta E. Heilbrun, MD" />
+        <script type="text/xml" >
+        </script>
+         <script src="c2.js"></script>
+    </head>
+    <body>
+        <section id="findings" class="level1" data-section-name="Findings">
+            <header class="level1">
+                Findings
+            </header>
+            <p title="">
+                <label for="findingsText">Thyroid:</label>
+                <textarea rows="3" cols="100" id="findingsText" name="a" data-field-type="TEXTAREA" data-field-completion-action="NONE">The thyroid is homogeneous without evidence for focal mass. No abnormal soft tissues masses or fluid collections are seen around the thyroid.</textarea>
+            </p>
+            <p title="">
+                <label for="NUMBER_1459371738029">The right lobe measures:</label>
+                <span>
+                    <input type="number" step="1.0" data-field-units="cm" id="NUMBER_1459371738029" name="b" data-field-type="NUMBER" data-field-completion-action="NONE" value="" />
+                    cm
+                </span>
+            </p>
+            <p title="">
+                <label for="NUMBER_1459371738030">The left lobe measures:</label>
+                <span>
+                    <input type="number" step="1.0" data-field-units="cm" id="NUMBER_1459371738030" name="c" data-field-type="NUMBER" data-field-completion-action="NONE" value="" />
+                    cm
+                </span>
+            </p>
+            <p title="">
+                <label for="TEXT_1459371738031">Isthmus:</label>
+                <textarea rows="3" cols="100" id="TEXT_1459371738031" name="d" data-field-type="TEXTAREA" data-field-completion-action="NONE">The isthmus is normal in size and configuration.</textarea>
+            </p>
+            <p title="">
+                <label for="TEXT_1459371738032">Lymph Nodes:</label>
+                <textarea rows="3" cols="100" id="TEXT_1459371738032" name="e" data-field-type="TEXTAREA" data-field-completion-action="NONE">Sweep images of the neck bilaterally adjacent to the thyroid demonstrate no abnormal lymph nodes.</textarea>
+            </p>
+            <p title="">
+                <label for="TEXT_1520912678542">Additional Findings:</label>
+                <input type="text" id="TEXT_1520912678542" name="f" data-field-type="TEXT" data-field-completion-action="NONE" value="None." />
+            </p>
+        </section>
+        <button onclick="Submit()">submit</button>
+        <script>
+            function Submit(){
+    Finding0bservation.component[1].valueString-document.getElementsByName("a")[0].value;
+    Finding0bservation.component[2].valuestring=document.getElementsByName("b")[0].value;
+    Finding0bservation.component[3].valueString-document.getElementsByName("c")[0].value;
+    Finding0bservation.component[4].valuestring=document.getElementsByName("d")[0].value;
+    Finding0bservation.component[5].valueString-document.getElementsByName("e")[0].value;
+    Finding0bservation.component[6].valuestring=document.getElementsByName("f")[0].value;
+ 
+    postData(Finding0bservation,"Observation")}
+    function postData(jsonString, type) {
+            var xhttp = new XMLHttpRequest();
+            var fhirUrl ="http://hapi.fhir.org/baseR4";
+            var url = fhirUrl +"/"+type;
+            xhttp.open("POST", url, false);
+            xhttp.setRequestHeader("Content-type", 'application/json+fhir');
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4) // && this.status == 201) 
+                {
+                    ret = JSON.parse(this.responseText);
+                    alert(this.responseText);
+                }
+            };
+            var data = JSON.stringify(jsonString);
+            xhttp.send(data);
+        }
+    
+        </script>
+    </body>
+</html>
